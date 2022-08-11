@@ -11,12 +11,39 @@ Mount and Inspect Lambda Layers in seconds.
 
 # Table of Contents
 
+0. [Inspiration](#inspiration)
 1. [Installation](#installation)
 2. [Usage](#usage)
 3. [License](#license)
 4. [Contributions](#contributions)
 
-    
+
+# Inspiration
+
+### Firstly, What is a Lambda Layer?
+
+    A Lambda Layer is an archive containing [...] code.
+    When you include a layer in an [AWS Lambda] function,
+    the contents are extracted to [...] the execution environment.
+
+As defined by [an AWS Compute blog.](https://aws.amazon.com/blogs/compute/using-lambda-layers-to-simplify-your-development-process/#:~:text=A%20Lambda%20layer%20is%20an,directory%20in%20the%20execution%20environment.)
+
+### Ok, then what does this `layerd` library do?
+
+Several steps of Layer inspection are automated here.
+
+Currently, a Layer is deployed to AWS under 1) a Name and 2) a Version. Once a version is deployed (possibly by a Third-Party), how can you then see the contents of that layer?
+
+One way would be to fumble around with the contents of the `/opt` directory in a lambda function. The equivalent to trying to lick your elbow.
+
+Another way, only possible if created by a First-Party, would be to head to AWS, login, navigate to Lambda's page, 
+enter the Layer subsection, choose a version, and press Download. From there, head to your local system, and unzip the contents. Of course the preferred way, 
+but is greatly limited to solely First-Parties and takes several minutes of navigation and login to a 2FA system.
+
+`layerd` automates the latter. `layerd` pings AWS Lambda, with the exact ARN of the Layer Version wanted, downloads, unzips, and mounts the contents locally. Within seconds. 
+
+Not a bad way to save a few minutes.
+
 
 # Installation
 

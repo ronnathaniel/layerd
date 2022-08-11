@@ -22,7 +22,6 @@ required = (
     []
 )
 
-print(required)
 
 setuptools.setup(
     name=PACKAGE,
