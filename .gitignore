@@ -2,3 +2,8 @@
 layer-*/
 *egg-info*
 *venv*
+*build*
+*dist/
+.DS_Store
+.eggs
+.idea

@@ -1,31 +1,50 @@
 import setuptools
 
-PACKAGE = 'dpl'
+PACKAGE = 'layerd'
 VERSION = '0.0.0-dev'
-with open("README.md", "r", encoding="utf-8") as fh:
-    long_description = fh.read()
-with open('requirements.txt') as f:
-    required = f.read().splitlines()
+with open("README.md", "r", encoding="utf-8") as readme:
+    long_description = readme.read()
+
+
+def try_reqs(f_name):
+    try:
+        with open(f_name, 'r') as reqs:
+            return reqs.read().splitlines()
+    except FileNotFoundError:
+        return None
+
+
+required = (
+    try_reqs('requirements.txt')
+    or
+    try_reqs('layerd.egg-info/requires.txt')
+    or
+    []
+)
+
+print(required)
 
 setuptools.setup(
     name=PACKAGE,
     version=VERSION,
     author="ronnathaniel",
     author_email="rnathaniel7@gmail.com",
-    short_description="[D]ownload [P]ublic [L]ayers (Lambda).",
+    description="Download AWS Lambda Layers.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    packages=['dpl'],
-    package_data={'dpl': ['*.pem']},
+    packages=['layerd'],
+    package_data={'layerd': ['*.pem']},
     python_requires=">=3.6",
     entry_points={
-        'console_scripts': ['dpl = dpl.__main__:run']
+        'console_scripts': ['layerd = layerd.__main__:run']
     },
     install_requires=required,
     include_package_data=True,
-    url="https://github.com/ronnathaniel/dpl",
+    use_calver='%Y.%m.%d.%H.%M',
+    setup_requires=['calver'],
+    url="https://github.com/ronnathaniel/layerd",
     project_urls={
-        "Bug Tracker": "https://github.com/ronnathaniel/dpl/issues"
+        "Bug Tracker": "https://github.com/ronnathaniel/layerd/issues"
     },
     classifiers=[
         'Intended Audience :: Developers',
@@ -43,7 +62,15 @@ setuptools.setup(
     keywords=[
         'python',
         'python3',
-        'dpl',
+        'layerd',
+        'daemon',
+        'download',
+        'layer',
+        'extension',
+        'aws',
+        'lambda',
+        'function',
+        'remote'
     ],
 
 )
