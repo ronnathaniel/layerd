@@ -1,6 +1,6 @@
 #  layerd
 
-Mount and Inspect Lambda Layers in seconds.
+Mount, Download, and Inspect Lambda Layers in seconds.
 
 > Lambda Layers created by a third party?
 >

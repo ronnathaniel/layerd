@@ -28,7 +28,6 @@ def parse_cli_args() -> str:
     args = [*sys.argv]
     args.pop(0)
     if (not args) or ('help' in args[0].lower()):
-        print(__usage__)
         return
     arn = args[0]
 
@@ -38,15 +37,15 @@ def parse_cli_args() -> str:
     return arn
 
 
-def mount(arn: str = None) -> None:
+def download(arn: str = None) -> None:
     """
     @arg arn: str. ARN of Public (Authorized) Lambda Layer.
     """
-    arn = arn or parse_cli_args()
+    arn = arn or parse_cli_args() or ''
     names = arn.split(':')
     if not (6 <= len(names) <= 8):
         print(__usage__)
-        print('Error: <ARN> not valid. Recieved ' + arn)
+        print('Error: <ARN> not valid. Recieved: ' + (arn or '<NoneType>'))
         exit(1)
     region: str = names[3]
     layer_q: str = names[5]
@@ -93,4 +92,4 @@ def mount(arn: str = None) -> None:
 
 
 if __name__ == '__main__':
-    mount()
+    download()

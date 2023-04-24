@@ -35,7 +35,7 @@ setuptools.setup(
     package_data={'layerd': ['*.pem']},
     python_requires=">=3.6",
     entry_points={
-        'console_scripts': ['layerd = layerd.__main__:run']
+        'console_scripts': ['layerd = layerd.__main__:download']
     },
     install_requires=required,
     include_package_data=True,
